@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    return send_from_directory('client', 'index.html')
+    return send_from_directory('client', 'signup.html')
 
 @app.route('/search/jobs', methods=['GET'])
 def job_search():
