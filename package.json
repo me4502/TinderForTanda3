@@ -1,0 +1,23 @@
+{
+  "name": "tinderfortanda3",
+  "version": "1.0.0",
+  "description": "WaaS - Workforce as a Service for TANDA Hackathon 2018",
+  "main": "index.js",
+  "dependencies": {
+    "materialize-css": "^1.0.0-beta"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me4502/TinderForTanda3.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/me4502/TinderForTanda3/issues"
+  },
+  "homepage": "https://github.com/me4502/TinderForTanda3#readme"
+}
