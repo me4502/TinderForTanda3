@@ -1,9 +1,13 @@
 import json
-
+from collections import defaultdict
+from typing import DefaultDict, List
 
 venues = []
 
 people = []
+
+swiperinos: DefaultDict[int, List[int]] = defaultdict(list)
+
 
 def load():
     venues.append(dict(
@@ -87,6 +91,8 @@ def load():
     ))
 index = 0
 
+pindex = 0
+
 
 def get_next_venue():
     global index
@@ -94,8 +100,13 @@ def get_next_venue():
     return json.dumps(venues[index % len(venues)])
 
 
-def get_next_person():
-    pass
+def get_next_person(venue_id):
+    global pindex
+    pindex += 1
+    user_list= swiperinos[venue_id]
+    if len(user_list)==0:
+        return '{"message"="none"}'
+    return json.dumps(user_list[pindex % len(user_list)])
 
 
 def swipe_right(id):
