@@ -148,5 +148,10 @@ def swipe_right(my_id, id):
 def swipe_left(my_id, id):
     return '{"swiped": "left"}'
 
+
 def get_matched_venues(id):
     return json.dumps(approved_users[id])
+
+
+def get_matched_users(id):
+    return json.dumps(swiperinos[id])
