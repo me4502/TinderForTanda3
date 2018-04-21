@@ -5,11 +5,13 @@
 }
 
 .swipe-right {
+  transition: opacity .5s;
   transform: translateX(100px) translateY(-100px) rotateZ(30deg);
   opacity: 0;
 }
 
 .swipe-left {
+  transition: opacity .5s;
   transform: translateX(-100px) translateY(-100px) rotateZ(-30deg);
   opacity: 0;
 }
