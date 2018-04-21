@@ -56,7 +56,7 @@ function doSwipe(direction) {
   }
 
   setTimeout(() => {
-    $.post(`/swipe/${direction}/${myId}/${venueId}`, function() {
+    $.post(`/swipe/${direction}/${venueId}/${myId}`, function() {
       $('.swipeable-card').removeClass('swipe-right')
       $('.swipeable-card').removeClass('swipe-left')
       $('.decline').removeClass('visible')

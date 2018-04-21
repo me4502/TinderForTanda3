@@ -5,34 +5,44 @@ const myId = '2'
 function getNextCard(id) {
   return new Promise((resolve, reject) => {
     $.get(`/get_next_card/${id}`, function(data) {
+      console.log(data)
       const nextCard = JSON.parse(data)
       venueId = nextCard.id
 
-      $('.swipeable-card').empty()
+      $('.swipeable-card').remove()
 
-      getMatchedVenues().then(matches => {
-        console.log(matches)
-      })
+      if (nextCard.message == 'none') {
+        const el = document.createElement('div')
+        el.className = 'card blue-grey darken-1'
+        el.innerHTML = `<div class="card-content white-text">
+        <span class="card-title">No matches</span>
+          <div class="body">
+            Sorry, there have been no matches.
+          </div>
+        </div>`
+        return resolve(el)
+      }
 
-      const el = document.createElement('div')
-      el.className = 'card-content white-text'
-      el.innerHTML = `<span class="card-title">Looking for: ${ nextCard.description } </span>
-        <div class="body">
-          <div>
-            <h2>Employer</h2>
-            <p>${ nextCard.name } </p>
-          </div>
-          <div>
-            <h2>Address</h2>
-            <p>${ nextCard.location } </p>
-          </div>
-          <div>
-            <h2>Wage</h2>
-            <p>${ nextCard.wage }</p>
-          </div>
-          <div>
-            <h2>Hours</h2>
-            <p>${ nextCard.hours } </p>
+      el.className = 'swipeable-card card blue-grey darken-1'
+      el.innerHTML = `<div class="card-content white-text">
+        <span class="card-title">Looking for: ${ nextCard.description } </span>
+          <div class="body">
+            <div>
+              <h2>Employer</h2>
+              <p>${ nextCard.name } </p>
+            </div>
+            <div>
+              <h2>Address</h2>
+              <p>${ nextCard.location } </p>
+            </div>
+            <div>
+              <h2>Wage</h2>
+              <p>${ nextCard.wage }</p>
+            </div>
+            <div>
+              <h2>Hours</h2>
+              <p>${ nextCard.hours } </p>
+            </div>
           </div>
         </div>`
       return resolve(el)
@@ -63,7 +73,7 @@ function doSwipe(direction) {
       $('.accept').removeClass('visible')
 
       getNextCard(myId).then(el => {
-        $('.swipeable-card').append(el)
+        $('.wrapper').append(el)
       })
     })
   }, 2300)
@@ -97,7 +107,7 @@ function main() {
   })
 
   getNextCard(myId).then(el => {
-    $('.swipeable-card').append(el)
+    $('.wrapper').append(el)
   })
 }
 
