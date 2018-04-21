@@ -55,6 +55,10 @@ def signup():
 def signupEmployer():
     return send_from_directory('client', 'signupEmployer.html')
 
+@app.route('/signup/employee', methods=['GET'])
+def signupEmployee():
+    return send_from_directory('client', 'signupEmployee.html')
+
 
 @app.route('/get_next_card/<card_type>/<int:id>', methods=["GET"])
 def get_next_card(card_type=None, id=None):
