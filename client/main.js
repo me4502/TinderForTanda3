@@ -27,7 +27,15 @@ async function doSwipe(direction, id) {
 
 async function getNextCard(type) {
   return new Promise((resolve, reject) => {
-    return resolve({ id: 0, title: 'Looking for bartender', body: 'We give big money' })
+    return resolve({
+        id: 0,
+        job_role: 'bartender',
+        street_address: '1 Brunswick Street',
+        suburb: 'Fortitude Valley',
+        postcode: '4006',
+        pay_range: '$20/hr - $30/hr',
+        job_description: 'Friendly family owned and operated bar',
+    })
     // jQuery.get('/get_next_card/venue', data => {
     //   resolve(data)
     // })
@@ -39,9 +47,20 @@ async function main() {
 
   const el = document.createElement('div')
   el.className = 'card-content white-text'
-  el.innerHTML = `<span class="card-title"> ${ nextCard.title } </span>
+  el.innerHTML = `<span class="card-title">Looking for: ${ nextCard.job_role } </span>
     <div class="body">
-      <p> ${ nextCard.body } </p>
+      <div>
+        <h2>Address</h2>
+        <p>${ nextCard.street_address } ${ nextCard.suburb } ${ nextCard.postcode }</p>
+      </div>
+      <div>
+        <h2>Pay Range</h2>
+        <p>${ nextCard.pay_range }</p>
+      </div>
+      <div>
+        <h2>Description</h2>
+        <p>${ nextCard.job_description }</p>
+      </div>
     </div>`
   $('.swipeable-card').append(el)
 
