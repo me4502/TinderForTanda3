@@ -1,17 +1,17 @@
 .swipeable-card {
-  transition: transform .5s, opacity .5s;
+  transition: opacity .8s;
   transform: translateX(0) rotateZ(0);
   opacity: 1;
 }
 
 .swipe-right {
-  transition: opacity .5s;
+  transition: transform .5s, opacity .5s;
   transform: translateX(100px) translateY(-100px) rotateZ(30deg);
   opacity: 0;
 }
 
 .swipe-left {
-  transition: opacity .5s;
+  transition: transform .5s, opacity .5s;
   transform: translateX(-100px) translateY(-100px) rotateZ(-30deg);
   opacity: 0;
 }
