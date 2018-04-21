@@ -1,5 +1,41 @@
 
-async function doSwipe(direction, id) {
+let venueId = ''
+
+function getNextCard(id) {
+  return new Promise((resolve, reject) => {
+    $.get(`/get_next_card/${id}`, function(data) {
+      const nextCard = JSON.parse(data)
+      venueId = nextCard.id
+
+      $('.swipeable-card').empty()
+
+      const el = document.createElement('div')
+      el.className = 'card-content white-text'
+      el.innerHTML = `<span class="card-title">Looking for: ${ nextCard.description } </span>
+        <div class="body">
+          <div>
+            <h2>Employer</h2>
+            <p>${ nextCard.name } </p>
+          </div>
+          <div>
+            <h2>Address</h2>
+            <p>${ nextCard.location } </p>
+          </div>
+          <div>
+            <h2>Wage</h2>
+            <p>${ nextCard.wage }</p>
+          </div>
+          <div>
+            <h2>Hours</h2>
+            <p>${ nextCard.hours } </p>
+          </div>
+        </div>`
+      return resolve(el)
+    })
+  })
+}
+
+function doSwipe(direction) {
   if (direction == 'left') {
     $('.swipeable-card').removeClass('swipe-right')
     $('.swipeable-card').addClass('swipe-left')
@@ -15,56 +51,30 @@ async function doSwipe(direction, id) {
   }
 
   setTimeout(() => {
-    $('.swipeable-card').removeClass('swipe-right')
-    $('.swipeable-card').removeClass('swipe-left')
-    $('.decline').removeClass('visible')
-    $('.accept').removeClass('visible')
-  }, 2500)
+    $.post(`/swipe/${direction}/${venueId}/102`, function() {
+      $('.swipeable-card').removeClass('swipe-right')
+      $('.swipeable-card').removeClass('swipe-left')
+      $('.decline').removeClass('visible')
+      $('.accept').removeClass('visible')
 
-  // jQuery.post(`/swipe/${direction}/${id}`)
+      getNextCard('102').then(el => {
+          $('.swipeable-card').append(el)
+      })
+    })
+  }, 2300)
 
 }
 
-async function getNextCard(type) {
-  return new Promise((resolve, reject) => {
+function main() {
 
-    jQuery.get('/get_next_card/venue/102', data => {
-      console.log(data)
-    })
-
-    return resolve({
-        id: 0,
-        job_role: 'bartender',
-        street_address: '1 Brunswick Street',
-        suburb: 'Fortitude Valley',
-        postcode: '4006',
-        pay_range: '$20/hr - $30/hr',
-        job_description: 'Friendly family owned and operated bar',
-    })
+  window.addEventListener('keyup', event => {
+    if (event.key == 'ArrowLeft') {
+      doSwipe('left')
+    }
+    if (event.key == 'ArrowRight') {
+      doSwipe('right')
+    }
   })
-}
-
-async function main() {
-  const nextCard = await getNextCard('venue')
-
-  const el = document.createElement('div')
-  el.className = 'card-content white-text'
-  el.innerHTML = `<span class="card-title">Looking for: ${ nextCard.job_role } </span>
-    <div class="body">
-      <div>
-        <h2>Address</h2>
-        <p>${ nextCard.street_address } ${ nextCard.suburb } ${ nextCard.postcode }</p>
-      </div>
-      <div>
-        <h2>Pay Range</h2>
-        <p>${ nextCard.pay_range }</p>
-      </div>
-      <div>
-        <h2>Description</h2>
-        <p>${ nextCard.job_description }</p>
-      </div>
-    </div>`
-  $('.swipeable-card').append(el)
 
   $(document).touchwipe({
     wipeLeft: () => { doSwipe('left') },
@@ -74,13 +84,8 @@ async function main() {
     preventDefaultEvents: true
   })
 
-  window.addEventListener('keyup', event => {
-    if (event.key == 'ArrowLeft') {
-      doSwipe('left', nextCard.id)
-    }
-    if (event.key == 'ArrowRight') {
-      doSwipe('right', nextCard.id)
-    }
+  getNextCard('102').then(el => {
+    $('.swipeable-card').append(el)
   })
 }
 
