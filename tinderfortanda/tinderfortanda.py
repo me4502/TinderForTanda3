@@ -129,7 +129,7 @@ def get_next_person(venue_id):
     pindex += 1
     user_list= swiperinos[venue_id]
     if len(user_list)==0:
-        return '{"message"="none"}'
+        return '{"message":"none"}'
     return json.dumps(user_list[pindex % len(user_list)])
 
 
