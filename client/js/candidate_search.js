@@ -1,12 +1,12 @@
 
-let venueId = ''
+let userId = ''
 const myId = '2'
 
 function getNextCard(id) {
   return new Promise((resolve, reject) => {
     $.get(`/get_next_card/${id}`, function(data) {
       const nextCard = JSON.parse(data)
-      venueId = nextCard.id
+      userId = nextCard.id
 
       $('.swipeable-card').remove()
 
@@ -70,7 +70,7 @@ function doSwipe(direction) {
   }
 
   setTimeout(() => {
-    $.post(`/swipe/${direction}/${myId}/${venueId}`, function() {
+    $.post(`/swipe/${direction}/${userId}/${myId}`, function() {
       $('.swipeable-card').removeClass('swipe-right')
       $('.swipeable-card').removeClass('swipe-left')
       $('.decline').removeClass('visible')

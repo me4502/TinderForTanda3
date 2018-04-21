@@ -63,10 +63,8 @@
     <script src="/js/main.js"></script>
 
     <script>
-      
       getMatchedVenues().then(matches => {
-        const el = document.getElementById('matches')
-
+        matches = JSON.parse(matches)
         var el = document.getElementById("matches");
         var newHtml = '<ul>';
           matches.map((match, index) => {
@@ -78,7 +76,7 @@
           el.innerHTML = newHtml;
 
         });
-        
+
 
     </script>
   </body>
