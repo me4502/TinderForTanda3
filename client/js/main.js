@@ -76,6 +76,15 @@ function getMatchedVenues() {
   })
 }
 
+function getMatchedUsers() {
+  return new Promise((resolve, reject) => {
+    $.get('/get_matched_users/2', function(matches) {
+      return resolve(matches)
+    })
+  })
+}
+
+
 function main() {
 
   window.addEventListener('keyup', event => {
