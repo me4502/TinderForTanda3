@@ -14,7 +14,7 @@ def index():
 def job_search():
     return send_from_directory('client', 'job_search.html')
 
-@app.route('/search/candiates', methods=['GET'])
+@app.route('/search/candidates', methods=['GET'])
 def candidate_search():
     return send_from_directory('client', 'candidate_search.html')
 
