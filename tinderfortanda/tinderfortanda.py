@@ -10,6 +10,7 @@ swiperinos: DefaultDict[int, List[int]] = defaultdict(list)
 
 approved_users: DefaultDict[int, List[int]] = defaultdict(list)
 
+
 def load():
     venues.append(dict(
         id=1,
@@ -51,6 +52,22 @@ def load():
         hours='11pm - 4am',
         description='Bartender'
     ))
+    venues.append(dict(
+        id=6,
+        name='KFC Fortitude Valley',
+        location=' Valley Metro, Fortitude Valley ',
+        wage='$16/hr',
+        hours='6pm - 8pm',
+        description='Front of House'
+    ))
+    venues.append(dict(
+        id=7,
+        name='Netherworld',
+        location=' 186 Brunswick St, Fortitude Valley ',
+        wage='$32/hr',
+        hours='9pm - 12am',
+        description='Bartender'
+    ))
 
     people.append(dict(
         id=101,
@@ -90,6 +107,7 @@ def load():
         location='Brisbane',
         experience='Bartender',
     ))
+
 index = 0
 
 pindex = 0
