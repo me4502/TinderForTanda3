@@ -1,5 +1,5 @@
 from flask import Flask
-from .tinderfortanda import (
+from tinderfortanda import (
     load, get_next_person, get_next_venue, swipe_right, swipe_left
 )
 
@@ -20,7 +20,6 @@ def swipe(direction=None, id=None):
         return swipe_right(id)
     else:
         return swipe_left(id)
-
 
 if __name__ == "__main__":
     load()
