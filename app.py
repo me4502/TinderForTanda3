@@ -11,29 +11,28 @@ def index():
     return send_from_directory('client', 'index.html')
 
 @app.route('/search/jobs', methods=['GET'])
-def index():
+def job_search():
     return send_from_directory('client', 'job_search.html')
 
 @app.route('/search/candiates', methods=['GET'])
-def index():
+def candidate_search():
     return send_from_directory('client', 'candidate_search.html')
 
 @app.route('/profile/employee', methods=['GET'])
-def index():
+def profileEmployee():
     return send_from_directory('client', 'profileEmployee.html')
 
 @app.route('/profile/employer', methods=['GET'])
-def index():
+def profileEmployer():
     return send_from_directory('client', 'profileEmployer.html')
 
 @app.route('/signup', methods=['GET'])
-def index():
+def signup():
     return send_from_directory('client', 'signup.html')
 
 @app.route('/signup/employer', methods=['GET'])
-def index():
+def signupEmployer():
     return send_from_directory('client', 'signupEmployer.html')
-
 
 @app.route('/get_next_card/:card_type', methods=["GET"])
 def get_next_card(card_type=None):
