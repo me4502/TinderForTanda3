@@ -21,6 +21,11 @@ def css(filename=None):
     return send_from_directory('client/css', filename)
 
 
+@app.route('/img/<path:filename>', methods=['GET'])
+def img(filename=None):
+    return send_from_directory('client/img', filename)
+
+
 @app.route('/search/jobs', methods=['GET'])
 def job_search():
     return send_from_directory('client', 'job_search.html')
