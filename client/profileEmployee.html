@@ -39,13 +39,10 @@
       <div class="container">
         <div class="row">
           <div class="col s6 offset-s3 cyan lighten-5" style="margin-top: 40px; padding: 60px;">
-            <form class="col s12" action="index" action="indexEmployee">
-                    <button class="btn waves-effect waves-light col s4 #ef9a9a red lighten-3" name="action">Go back
-                            <i class="material-icons left">arrow_back</i>
-                    </button>
+            <form class="col s12" action="index" action="/jobs/search">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="company_name" type="text" class="validate" value = "Melinda">
+                  <input id="company_name" type="text" class="validate" value = "Milly">
                   <label class="active" for="company_name">Name</label>
                 </div>
               </div>
@@ -82,10 +79,10 @@
                       </div>
                   </form>
               </div>
-            
-              <button class="btn waves-effect waves-light col s10 #e0f7fa cyan lighten-2" name="action" action="index/employee" type = "submit">Submit
-                  <i class="material-icons right">arrow_right</i>
-             </button>
+              <a href="/search/jobs" class="btn waves-effect waves-light col s10 #e0f7fa cyan lighten-2">
+                Submit
+                <i class="material-icons right">arrow_right</i>
+              </a>
             </form>
           </div>
         </div>
