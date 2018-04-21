@@ -120,15 +120,15 @@ def swipe_right(my_id, id):
         approved_user_list = approved_users[id]
         approved_user_list.append(my_id)
         approved_users[id] = approved_user_list
-
     else:
         user_list = swiperinos[id]
         user_list.append(my_id)
         swiperinos[id] = user_list ## adding a person to the list of people who have swiped right to the venue
+    return '{"swiped": "right"}'
 
 
 def swipe_left(my_id, id):
-    pass
+    return '{"swiped": "left"}'
 
 def get_matched_venues(id):
     return json.dumps(approved_users[id])
