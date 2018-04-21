@@ -8,6 +8,7 @@ people = []
 
 swiperinos: DefaultDict[int, List[int]] = defaultdict(list)
 
+approved_users: DefaultDict[int, List[int]] = defaultdict(list)
 
 def load():
     venues.append(dict(
@@ -52,7 +53,7 @@ def load():
     ))
 
     people.append(dict(
-        id=1,
+        id=101,
         name='Bennyflick Coppersplash',
         photo='http://benedictcumberbatch.co.uk/wordpress/wp-content/gallery/spencer-hart-samsung-galaxy-note-party/spencer-hart-samsung-hq3.jpg',
         pay_range='$700/hr - $750/hr',
@@ -62,7 +63,7 @@ def load():
     ))
 
     people.append(dict(
-        id=2,
+        id=102,
         name='Milly Blob',
         photo='https://s-media-cache-ak0.pinimg.com/originals/0a/b9/53/0ab953a8e043745e762df743da98b88b.jpg',
         pay_range='$20/hr - $30/hr',
@@ -72,7 +73,7 @@ def load():
     ))
 
     people.append(dict(
-        id=3,
+        id=103,
         name='Sam Pumpernickle',
         photo='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlxA_iNoxGGM3NxIXfmJkMkelqcnU1NEeGWf8U7luYm1n0knDRlQ',
         pay_range='$20/hr - $30/hr',
@@ -81,7 +82,7 @@ def load():
         experience='Bartender',
     ))
     people.append(dict(
-        id=4,
+        id=104,
         name='Tom Cruise',
         photo='https://media1.popsugar-assets.com/files/thumbor/D8_H1hKqyOkHP2sMvJV4kXmXurg/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2010/07/27/4/192/1922398/60992755/i/Pictures-Tom-Cruise-Cameron-Diaz-Promoting-Knight-Day-Mexico-City.jpg',
         pay_range='$20/hr - $30/hr',
@@ -94,8 +95,13 @@ index = 0
 pindex = 0
 
 
-def get_next_venue():
+def is_venue(id):
+    return id <= 100
+
+
+def get_next_venue(user_id):
     global index
+
     index += 1
     return json.dumps(venues[index % len(venues)])
 
@@ -109,9 +115,20 @@ def get_next_person(venue_id):
     return json.dumps(user_list[pindex % len(user_list)])
 
 
-def swipe_right(id):
-    pass
+def swipe_right(my_id, id):
+    if is_venue(my_id):
+        approved_user_list = approved_users[id]
+        approved_user_list.append(my_id)
+        approved_users[id] = approved_user_list
+
+    else:
+        user_list = swiperinos[id]
+        user_list.append(my_id)
+        swiperinos[id] = user_list ## adding a person to the list of people who have swiped right to the venue
 
 
-def swipe_left(id):
+def swipe_left(my_id, id):
     pass
+
+def get_matched_venues(id):
+    return json.dumps(approved_users[id])
