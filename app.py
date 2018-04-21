@@ -12,7 +12,7 @@ def index():
 
 
 @app.route('/js/:filename', methods=['GET'])
-def index(filename=None):
+def js(filename=None):
     return send_from_directory('js', filename)
 
 
