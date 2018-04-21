@@ -117,6 +117,13 @@ def is_venue(id):
     return id <= 100
 
 
+def get_person_by_id(id):
+    for person in people:
+        if person['id'] == id:
+            return person
+    return None
+
+
 def get_next_venue(user_id):
     global index
 
@@ -130,7 +137,7 @@ def get_next_person(venue_id):
     user_list= swiperinos[venue_id]
     if len(user_list)==0:
         return '{"message"="none"}'
-    return json.dumps(user_list[pindex % len(user_list)])
+    return json.dumps(get_person_by_id(user_list[pindex % len(user_list)]))
 
 
 def swipe_right(my_id, id):
