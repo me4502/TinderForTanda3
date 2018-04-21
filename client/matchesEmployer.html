@@ -50,30 +50,30 @@
     <footer class="page-footer cyan">
     </footer>
 
-    <script src="http://www.netcu.de/templates/netcu/js/jquery.touchwipe.min.js"></script>
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Materialize JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://www.netcu.de/templates/netcu/js/jquery.touchwipe.min.js"></script>
+
     <script src="/js/main.js"></script>
 
     <script>
-
       getMatchedUsers().then(matches => {
+        matches = JSON.parse(matches)
+        const el = document.getElementById('matches')
+        let newHtml = '<ul>'
 
-        
-        var el = document.getElementById("matches");
-        var newHtml = '<ul>';
-          matches.map((match, index) => {
-            newHtml += `
-              <li style ="border: 1px solid black; ${index < matches.length-1 ? 'border-bottom-width: 0;' : ''}"> ${match.name}</li> 
-            `;
-          })
-          newHtml += '</ul>';
-          el.innerHTML = newHtml;
-     
+        matches.map((match, index) => {
+          newHtml += `
+            <li style ="border: 1px solid black; ${index < matches.length-1 ? 'border-bottom-width: 0;' : ''}"> ${match.name}</li>
+          `;
+        })
+        newHtml += '</ul>';
+        el.innerHTML = newHtml;
+
         });
-        
+
 
     </script>
   </body>
