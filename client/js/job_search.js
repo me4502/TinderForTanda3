@@ -66,7 +66,7 @@ function doSwipe(direction) {
         $('.swipeable-card').append(el)
       })
     })
-  }, 2300)
+  }, 1600)
 }
 
 function getMatchedVenues() {

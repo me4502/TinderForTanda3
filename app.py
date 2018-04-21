@@ -87,11 +87,11 @@ def matched_venues(id=None):
 def matched_users(id=None):
     return get_matched_users(id)
 
-@app.route('/matches_employer')
+@app.route('/matches/employer')
 def matches_employer():
     return send_from_directory('client', 'matchesEmployer.html')
 
-@app.route('/matches_employee')
+@app.route('/matches/employee')
 def matches_employee():
     return send_from_directory('client', 'matchesEmployee.html')
 

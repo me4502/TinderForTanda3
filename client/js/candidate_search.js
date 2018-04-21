@@ -5,14 +5,14 @@ const myId = '2'
 function getNextCard(id) {
   return new Promise((resolve, reject) => {
     $.get(`/get_next_card/${id}`, function(data) {
-      console.log(data)
       const nextCard = JSON.parse(data)
       venueId = nextCard.id
 
       $('.swipeable-card').remove()
 
+      const el = document.createElement('div')
+
       if (nextCard.message == 'none') {
-        const el = document.createElement('div')
         el.className = 'card blue-grey darken-1'
         el.innerHTML = `<div class="card-content white-text">
         <span class="card-title">No matches</span>
@@ -25,23 +25,27 @@ function getNextCard(id) {
 
       el.className = 'swipeable-card card blue-grey darken-1'
       el.innerHTML = `<div class="card-content white-text">
-        <span class="card-title">Looking for: ${ nextCard.description } </span>
+        <span class="card-title"> You've got an interested: ${nextCard.experience} </span>
           <div class="body">
             <div>
-              <h2>Employer</h2>
+              <h2>Match</h2>
               <p>${ nextCard.name } </p>
             </div>
             <div>
-              <h2>Address</h2>
+              <h2>Localtion</h2>
               <p>${ nextCard.location } </p>
             </div>
             <div>
-              <h2>Wage</h2>
-              <p>${ nextCard.wage }</p>
+              <h2>Pay Range</h2>
+              <p>${ nextCard.pay_range }</p>
             </div>
             <div>
               <h2>Hours</h2>
               <p>${ nextCard.hours } </p>
+            </div>
+            <div>
+              <h2>Photo</h2>
+              <img src="${ nextCard.photo }" style="width:100%; height: auto"></img>
             </div>
           </div>
         </div>`
