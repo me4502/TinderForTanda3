@@ -87,6 +87,13 @@ def matched_venues(id=None):
 def matched_users(id=None):
     return get_matched_users(id)
 
+@app.route('/matches_employer')
+def matches_employer():
+    return send_from_directory('client', 'matchesEmployer.html')
+
+@app.route('/matches_employee')
+def matches_employee():
+    return send_from_directory('client', 'matchesEmployee.html')
 
 if __name__ == "__main__":
     load()

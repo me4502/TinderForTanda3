@@ -12,6 +12,7 @@ approved_users: DefaultDict[int, List[int]] = defaultdict(list)
 
 
 def load():
+    swiperinos[2] = [101, 103, 102, 104]
     venues.append(dict(
         id=1,
         name='Lucky Egg',
