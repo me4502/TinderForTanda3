@@ -73,7 +73,7 @@ def load():
     people.append(dict(
         id=101,
         name='Bennyflick Coppersplash',
-        photo='http://benedictcumberbatch.co.uk/wordpress/wp-content/gallery/spencer-hart-samsung-galaxy-note-party/spencer-hart-samsung-hq3.jpg',
+        photo='https://benedictcumberbatch.co.uk/wordpress/wp-content/gallery/spencer-hart-samsung-galaxy-note-party/spencer-hart-samsung-hq3.jpg',
         pay_range='$700/hr - $750/hr',
         hours='5 - 7',
         location='Fortitude Valley',
