@@ -1,6 +1,6 @@
 from flask import Flask, send_from_directory
 from tinderfortanda import (
-    load, get_next_person, get_next_venue, swipe_right, swipe_left
+    load, get_next_person, get_next_venue, swipe_right, swipe_left, get_matched_venues
 )
 
 app = Flask(__name__)
@@ -70,6 +70,11 @@ def swipe(direction=None, id=None, my_id=None):
         return swipe_right(my_id, id)
     else:
         return swipe_left(my_id, id)
+
+
+@app.route('/get_matched_venues/<int:id>')
+def matched_venues(id=None):
+    return get_matched_venues(id)
 
 
 if __name__ == "__main__":
