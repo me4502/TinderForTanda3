@@ -125,6 +125,13 @@ def get_person_by_id(id):
     return None
 
 
+def get_venue_by_id(id):
+    for venue in venues:
+        if venue['id'] == id:
+            return venue
+    return None
+
+
 def get_next_venue(user_id):
     global index
 
@@ -158,8 +165,8 @@ def swipe_left(my_id, id):
 
 
 def get_matched_venues(id):
-    return json.dumps(approved_users[id])
+    return json.dumps([get_venue_by_id(i) for i in approved_users[id]])
 
 
 def get_matched_users(id):
-    return json.dumps(swiperinos[id])
+    return json.dumps([get_person_by_id(i) for i in swiperinos[id]])
