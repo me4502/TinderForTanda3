@@ -28,7 +28,7 @@ async function doSwipe(direction, id) {
 async function getNextCard(type) {
   return new Promise((resolve, reject) => {
 
-    jQuery.get('/get_next_card/venue', data => {
+    jQuery.get('/get_next_card/venue/102', data => {
       console.log(data)
     })
 
