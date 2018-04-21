@@ -17,15 +17,26 @@
 }
 
 .accept, .decline {
-  font-size: 4em;
   visibility: hidden;
   position: absolute;
   left: 45%;
   top: 25%;
 
-  transition: transform 2s, opacity 2s;
+  transition: transform 1.5s, opacity 1.5s;
   transform: translateY(0);
   opacity: 1;
+}
+
+.accept i, .decline i {
+  font-size: 4em;
+}
+
+.accept {
+  color: green;
+}
+
+.decline {
+  color: red;
 }
 
 .accept.visible, .decline.visible {
