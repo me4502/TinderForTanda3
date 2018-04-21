@@ -56,7 +56,7 @@ def signupEmployer():
     return send_from_directory('client', 'signupEmployer.html')
 
 
-@app.route('/get_next_card/:card_type/:id', methods=["GET"])
+@app.route('/get_next_card/<card_type>/<int:id>', methods=["GET"])
 def get_next_card(card_type=None, id=None):
     if card_type == 'user':
         return get_next_person(id)
@@ -64,7 +64,7 @@ def get_next_card(card_type=None, id=None):
         return get_next_venue(id)
 
 
-@app.route('/swipe/:direction/:id/:my_id', methods=['POST'])
+@app.route('/swipe/<direction>/<int:id>/<int:my_id>', methods=['POST'])
 def swipe(direction=None, id=None, my_id=None):
     if direction == 'right':
         return swipe_right(my_id, id)
