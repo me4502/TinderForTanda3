@@ -11,9 +11,9 @@ def index():
     return send_from_directory('client', 'signup.html')
 
 
-@app.route('/js/:filename', methods=['GET'])
+@app.route('/js/<path:filename>', methods=['GET'])
 def js(filename=None):
-    return send_from_directory('js', filename)
+    return send_from_directory('client/js', filename)
 
 
 @app.route('/search/jobs', methods=['GET'])
@@ -46,20 +46,20 @@ def signupEmployer():
     return send_from_directory('client', 'signupEmployer.html')
 
 
-@app.route('/get_next_card/:card_type', methods=["GET"])
-def get_next_card(card_type=None):
+@app.route('/get_next_card/:card_type/:id', methods=["GET"])
+def get_next_card(card_type=None, id=None):
     if card_type == 'user':
-        return get_next_person()
+        return get_next_person(id)
     else:
-        return get_next_venue()
+        return get_next_venue(id)
 
 
-@app.route('/swipe/:direction/:id', methods=['POST'])
-def swipe(direction=None, id=None):
+@app.route('/swipe/:direction/:id/:my_id', methods=['POST'])
+def swipe(direction=None, id=None, my_id=None):
     if direction == 'right':
-        return swipe_right(id)
+        return swipe_right(my_id, id)
     else:
-        return swipe_left(id)
+        return swipe_left(my_id, id)
 
 
 if __name__ == "__main__":
