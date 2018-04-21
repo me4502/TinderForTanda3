@@ -45,7 +45,7 @@ async function main() {
     </div>`
   $('.swipeable-card').append(el)
 
-  $('.swipeable-card').touchwipe({
+  $(document).touchwipe({
     wipeLeft: () => { doSwipe('left') },
     wipeRight: () => { doSwipe('right') },
     min_move_x: 20,
