@@ -9,6 +9,10 @@ function getNextCard(id) {
 
       $('.swipeable-card').empty()
 
+      getMatchedVenues().then(matches => {
+        console.log(matches)
+      })
+
       const el = document.createElement('div')
       el.className = 'card-content white-text'
       el.innerHTML = `<span class="card-title">Looking for: ${ nextCard.description } </span>
@@ -51,18 +55,25 @@ function doSwipe(direction) {
   }
 
   setTimeout(() => {
-    $.post(`/swipe/${direction}/${venueId}/102`, function() {
+    $.post(`/swipe/${direction}/102/${venueId}`, function() {
       $('.swipeable-card').removeClass('swipe-right')
       $('.swipeable-card').removeClass('swipe-left')
       $('.decline').removeClass('visible')
       $('.accept').removeClass('visible')
 
       getNextCard('102').then(el => {
-          $('.swipeable-card').append(el)
+        $('.swipeable-card').append(el)
       })
     })
   }, 2300)
+}
 
+function getMatchedVenues() {
+  return new Promise((resolve, reject) => {
+    $.get('/get_matched_venues/102', function(matches) {
+      return resolve(matches)
+    })
+  })
 }
 
 function main() {
