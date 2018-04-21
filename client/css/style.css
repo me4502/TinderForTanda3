@@ -1,0 +1,12 @@
+.swipeable-card {
+  transition: transform .5s;
+  transform: translateX(0);
+}
+
+.swipe-right {
+  transform: translateX(100px);
+}
+
+.swipe-left {
+  transform: translateX(-100px);
+}
