@@ -27,6 +27,11 @@ async function doSwipe(direction, id) {
 
 async function getNextCard(type) {
   return new Promise((resolve, reject) => {
+
+    jQuery.get('/get_next_card/venue', data => {
+      console.log(data)
+    })
+
     return resolve({
         id: 0,
         job_role: 'bartender',
@@ -36,9 +41,6 @@ async function getNextCard(type) {
         pay_range: '$20/hr - $30/hr',
         job_description: 'Friendly family owned and operated bar',
     })
-    // jQuery.get('/get_next_card/venue', data => {
-    //   resolve(data)
-    // })
   })
 }
 
