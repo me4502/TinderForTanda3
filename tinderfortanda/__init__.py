@@ -1,0 +1,1 @@
+from .tinderfortanda import load
