@@ -1,6 +1,6 @@
 from flask import Flask, send_from_directory
 from tinderfortanda import (
-    load, get_next_person, get_next_venue, swipe_right, swipe_left, get_matched_venues
+    load, get_next_person, get_next_venue, swipe_right, swipe_left, get_matched_venues, is_venue
 )
 
 app = Flask(__name__)
@@ -60,9 +60,9 @@ def signupEmployee():
     return send_from_directory('client', 'signupEmployee.html')
 
 
-@app.route('/get_next_card/<card_type>/<int:id>', methods=["GET"])
+@app.route('/get_next_card/<int:id>', methods=["GET"])
 def get_next_card(card_type=None, id=None):
-    if card_type == 'user':
+    if is_venue(id):
         return get_next_person(id)
     else:
         return get_next_venue(id)
